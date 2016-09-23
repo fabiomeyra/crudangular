@@ -1,0 +1,27 @@
+{
+  "name": "agenda",
+  "version": "1.0.0",
+  "description": "Agenda de Contatos",
+  "main": "server.js",
+  "dependencies": {
+    "angular": "^1.5.8",
+    "body-parser": "^1.15.2",
+    "express": "^4.14.0",
+    "mongojs": "^2.4.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fabiomeyra/crudangular.git"
+  },
+  "author": "fabio",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/fabiomeyra/crudangular/issues"
+  },
+  "homepage": "https://github.com/fabiomeyra/crudangular#readme"
+}
