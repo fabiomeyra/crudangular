@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="/js/app.js"></script>
+  <script src="/js/controllers/appCtrl.js"></script>
+  <script src="/js/services/contatosAPIService.js"></script>
+  <script src="/js/services/ufsAPIService.js"></script>
+  <script src="/js/constantes/configValues.js"></script>
+<!-- Late compiled and minified CSS -->
+ <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+
+<!-- Optional theme -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+  <style>
+    body{ padding-top:20px;}
+    
+  </style>
+
+  <title>Lista de Contatos</title>
+</head>
+  <body>
+    <div class="container" ng-controller='appCtrl'>
+      <h1>Agenda</h1>
+      <form name="contactForm">
+        <table class="table">
+          <thead>
+            <tr>
+              <th>Nome</th>         
+              <th>Email</th>
+              <th>Número</th>
+              <th>Localidade</th>
+              <th>Ação</th>
+              <th>&nbsp;</th>
+            </tr>
+          </thead>
+          <tbody>
+          
+            <tr>
+              <td><input name= 'nome' ng-required="true" class="form-control" ng-model="contato.nome" placeholder="João" autocomplete="off"></td>
+              <td>
+                <input type="email" name='email' class="form-control" ng-model='contato.email' ng-required='true' placeholder="mail@mail.com" autocomplete="off">
+                <div class="alert alert-danger" ng-show="contactForm.email.$error.required && contactForm.email.$dirty">Email é obrigatório</div>
+                <div class="alert alert-danger" ng-show="contactForm.email.$error.email">Formato "mail@mail.com"</div>
+              </td>
+              <td>
+                <input name = 'numero' class="form-control" ng-model='contato.numero' ng-required='true' ng-pattern="/^\d{4}-\d{4}$/ " placeholder="9999-9999" autocomplete="off">
+                <div class="alert alert-danger" ng-show="contactForm.numero.$error.required && contactForm.numero.$dirty">O campo número é obrigatório</div>
+                <div class="alert alert-danger" ng-show="contactForm.numero.$error.pattern && contactForm.numero.$dirty">formato "4444-4444"</div>
+                
+              </td>
+              <td><select class="form-control" ng-model='contato.localidade' ng-options="local.uf for local in locais" ng-required=true>
+                <option value="">UF</option>
+              </select></td>
+              <td><button class="btn btn-info btn-block" ng-click="salvarContato(contato)" ng-if="editando" ng-disabled="contactForm.$invalid">Salvar</button><button class="btn btn-primary btn-block" ng-click="salvarContato(contato)" ng-if="!editando" ng-disabled="contactForm.$invalid" >Adicionar</button></td>
+            </tr>
+            
+            <tr ng-repeat="contato in listaDeContatos">
+              <td>{{contato.nome}}</td>
+              <td>{{contato.email}}</td>
+              <td>{{contato.numero}}</td>
+              <td>{{contato.localidade.uf}}</td>  
+              <td><button class="btn btn-danger btn-block" ng-click="deletarContato(contato._id)" ng-if="!editando">Deletar</button></td>
+              <td><button class="btn btn-warning btn-block" ng-click="editarContato(contato)">Editar</button></td>
+            </tr>
+          </tbody>
+        </table>
+      </form>
+      <div class="alert alert-danger" ng-if="semBanco">Sem conexão com o banco de dados</div>
+    </div>        
+  </body>
+</html>
