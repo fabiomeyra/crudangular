@@ -17,7 +17,11 @@ db.on('connect',function(){
 app.all('*', function(req,res,next){
 	res.header('Access-Control-Allow-Origin','*');
 	res.header('Access-Control-Allow-Methods','PUT, GET, POST, DELETE, OPTIONS');
+<<<<<<< HEAD
 	//res.header('Access-Control-Allow-Headers','Content-Type');
+=======
+	res.header('Access-Control-Allow-Headers','Content-Type');
+>>>>>>> d0bc67e711d121f741153246a52d7e629ecc70fd
 	next();
 }); 
 
@@ -50,6 +54,10 @@ app.delete('/contactlist/:id',function(req,res){
 
 app.put('/salvaContato', function(req, res){
 	var id = req.body._id;
+<<<<<<< HEAD
+=======
+	console.log(id);
+>>>>>>> d0bc67e711d121f741153246a52d7e629ecc70fd
 	db.contactlist.update(
 		{_id: mongojs.ObjectId(id)},
 		{$set:{nome: req.body.nome, email: req.body.email, numero: req.body.numero, localidade: req.body.localidade}},
