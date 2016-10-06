@@ -12,6 +12,7 @@ db.on('error', function(err){
 });
 db.on('connect',function(){
 	console.log("está conectado ao banco!");
+	
 });
 	
 app.all('*', function(req,res,next){

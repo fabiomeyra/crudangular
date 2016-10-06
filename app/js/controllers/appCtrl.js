@@ -4,7 +4,7 @@ angular.module('app').controller('appCtrl',function($scope, contatosAPI, locaisA
     	$scope.listaDeContatos=response.data;
     	$scope.semBanco = false;   
     }).catch(function(err){
-    			
+    		
     });
 	
 	locaisAPI.getLocais().then(function(response){
